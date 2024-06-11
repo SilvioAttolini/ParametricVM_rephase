@@ -5,13 +5,13 @@ import os
 """
 
 
-def get_params():
+def get_params(save_dir):
     # create params
     params = {'Fs': 16000,
               'winLength': 4096,
               'sigLenSecs': 5,
               'd': 0.078520,
-              'save_directory': 'results'
+              'save_directory': save_dir
               }
     save_directory = params['save_directory']
 

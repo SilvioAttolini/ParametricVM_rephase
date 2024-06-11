@@ -12,7 +12,7 @@ def spatial_coherence(reading_folder):
     print("Rebuilding data...")
 
     # parameters
-    params = get_params()
+    params = get_params('results/method1')
     save_vm_audio = params['save_vm_audio']
     save_phases = params['save_phases']
     save_signal_time = params['save_signal_time']
@@ -21,7 +21,7 @@ def spatial_coherence(reading_folder):
     save_stereo = params['save_stereo']
 
     # import the time domain complete signals
-    with h5py.File(f'{reading_folder}/completeEstimate.mat', 'r') as file:
+    with h5py.File(f'{reading_folder}/completeEstimate_m1.mat', 'r') as file:
         complete_vms_time = np.array(file[f'completeEstimate'])
     n_Vms, _ = np.shape(complete_vms_time)
 
