@@ -7,7 +7,8 @@ from helpers.spatial_coherence import spatial_coherence
 def main():
     eng.eval("run('matlab_files/quickload.m')", nargout=0)
 
-    spatial_coherence("matlab_files/export")
+    READING_FOLDER = 'matlab_files/export'
+    spatial_coherence(READING_FOLDER)
 
     return
 
