@@ -1,3 +1,6 @@
+from Habets_paper.method.habets import habets
+
+
 def main() -> None:
     """
     I
@@ -71,8 +74,67 @@ def main() -> None:
 
         B) Approximately homogeneous NF
 
+            Generate M mutually independent signals that consist of continuous (without periods of silence)
+            babble speech or factory noise. These noise signals must have the same power: normalize them all with
+            respect to the first one. In the STFT domain we do not expect the short-term PSDs of N_p(l, w_k)
+            to be equal to that of N_q(l, w_k), therefore we can accept small fluctuations in the long-term PSDs.
+            This represents the approximate homogeneity. Also, the signals resulting from the mixing operations
+            will inevitably sound like a mixture of babble speeches or factory noises.
+
+    IV
+        Determine the mixing matrix C(w_k), which is responsible for imposing the desired SC.
+
+        Prerequisites on C(w_k):
+            1) the inner product of the columns p and q must give back Gamma_pq(w_k). E.g.: in a 2x2 C(w_k)
+                    matrix, Cp · Cq = x_p*x_q + y_p*y_q
+            2) the norm of each column vector of C(w_k) must be equal to 1. norm(C_p) = 1
+            3) The SC between p and q must be Real and equal to Gamma_pq(w_k). C_p · C_q = Gamma_pq(w_k)
+
+        Techniques to build C(w_k):
+            1) using RIRs to obtain noise sources. This method is too computationally expensive and the SC
+                    created depend on the physical positions of the sensors.
+            2) using Cholesky decomposition: GAMMA(w_k) = C(w_k).H * C(w_k). This method creates an upper-right
+                    triangular matrix, which creates unnatural results, since X_1 would depend only on N_1, while
+                    X_M would depend on all the previous Ns. Also, this resulting matrix is only suitable
+                    to omnidirectional sources.
+            3) The general solution is given by the eigenvalue decomposition (EVD) of the matrix GAMMA(w_k):
+                    GAMMA(w_k) = V(w_k) * D(w_k) * V(w_k).H
+                               = V(w_k) * sqrt(D(w_k)) * sqrt(D(w_k)) * V(w_k).H
+                               = V(w_k) * sqrt(D(w_k)) * C(w_k)
+                   Even in this method all the noises to not contribute equally, but the result is
+                   sufficiently satisfying.
+                   In the single directional source, the EVD will build only the first row of C(w_k) with
+                   positive values.
+
+    V
+        Algorithm summary:
+            1) Define GAMMA(w_k) with the seeked SCs
+            2) Calculate the EVD of GAMMA(w_k) to obtain C(w_k) = sqrt(D(w_k)) * V(w_k).H
+            3) Generate the M mutually independent random signals N_p(l, w_k)
+            4) For all sensors p
+                    For all l in L
+                            For all w_k in K
+                                    X_p(l, w_k) = C(w_k).H * N_p(l, w_k)
+            5) x_p(t) = istft(X_p(l, w_k))
+
+            overall complexity = O(LKM^2 * log_2(K))
+
+    VI
+        Use more efficient techniques for the EDV
+        Exploit the spectrum being conjugate symmetric
+        Babble_speech_noise = Total_Signal - Direct_Signal
+        Use K = 256
+        Use d_pq = 0.2 m
+
     """
+
+    habets()
 
 
 if __name__ == "__main__":
     main()
+
+"""
+~ = AltGr + ì
+· = AltGr + .
+"""
