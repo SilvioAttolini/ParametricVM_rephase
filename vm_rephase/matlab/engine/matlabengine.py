@@ -226,7 +226,7 @@ class MatlabEngine(object):
 
     def exit(self):
         """
-        Stop the MATLAB session.  Calling this method will terminate the
+        Stop the MATLAB session.  Calling this my_implementation will terminate the
         MatlabEngine instance immediately.
         """
         if self._check_matlab():
@@ -235,7 +235,7 @@ class MatlabEngine(object):
 
     def quit(self):
         """
-        Stop the MATLAB session.  Calling this method will terminate the
+        Stop the MATLAB session.  Calling this my_implementation will terminate the
         MatlabEngine instance immediately.
         """
         self.exit()

@@ -1,4 +1,6 @@
-from Habets_paper.method.habets import habets
+import matlab.engine
+eng = matlab.engine.start_matlab()
+from Habets_paper.my_implementation.habets import habets
 
 
 def main() -> None:
@@ -91,9 +93,9 @@ def main() -> None:
             3) The SC between p and q must be Real and equal to Gamma_pq(w_k). C_p · C_q = Gamma_pq(w_k)
 
         Techniques to build C(w_k):
-            1) using RIRs to obtain noise sources. This method is too computationally expensive and the SC
+            1) using RIRs to obtain noise sources. This my_implementation is too computationally expensive and the SC
                     created depend on the physical positions of the sensors.
-            2) using Cholesky decomposition: GAMMA(w_k) = C(w_k).H * C(w_k). This method creates an upper-right
+            2) using Cholesky decomposition: GAMMA(w_k) = C(w_k).H * C(w_k). This my_implementation creates an upper-right
                     triangular matrix, which creates unnatural results, since X_1 would depend only on N_1, while
                     X_M would depend on all the previous Ns. Also, this resulting matrix is only suitable
                     to omnidirectional sources.
@@ -101,7 +103,7 @@ def main() -> None:
                     GAMMA(w_k) = V(w_k) * D(w_k) * V(w_k).H
                                = V(w_k) * sqrt(D(w_k)) * sqrt(D(w_k)) * V(w_k).H
                                = V(w_k) * sqrt(D(w_k)) * C(w_k)
-                   Even in this method all the noises to not contribute equally, but the result is
+                   Even in this my_implementation all the noises to not contribute equally, but the result is
                    sufficiently satisfying.
                    In the single directional source, the EVD will build only the first row of C(w_k) with
                    positive values.
@@ -128,7 +130,13 @@ def main() -> None:
 
     """
 
-    habets()
+    # My implementation
+    #habets()
+    # todo: check the results of the EVD!!!
+
+    # Original paper
+    eng.eval("run('ANF-Generator/gen_noisefield.m')", nargout=0)
+    # eng.eval("run('ANF-Generator/gen_babble_speech.m')", nargout=0)
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ nperseg = 1024  # Length of each segment
 noverlap = 512  # Number of overlapping samples
 nfft = 1024  # Number of FFT points
 
-# Calculate the PSD using the Welch method
+# Calculate the PSD using the Welch my_implementation
 f, pxx = welch(x, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 _, pyy = welch(y, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 
@@ -31,7 +31,7 @@ plt.title('Power Spectral Density')
 plt.grid(True)
 plt.show()
 
-# Calculate the cross-PSD using the Welch method
+# Calculate the cross-PSD using the Welch my_implementation
 f, Pxy = csd(x, y, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 
 # Plot the cross-PSD

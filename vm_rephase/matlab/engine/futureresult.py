@@ -53,7 +53,7 @@ class FutureResult():
             SyntaxError - if there is an error in the MATLAB statement.
             InterruptedError - if the task is interrupted.
             CancelledError - if the evaluation of MATLAB function is cancelled already.
-            TimeoutError - if this method fails to get the result in timeout seconds.
+            TimeoutError - if this my_implementation fails to get the result in timeout seconds.
             MatlabExecutionError - if the MATLAB statement fails in execution.
             TypeError - if the data type of return value is not supported.
             RejectedExecutionError  - an error occurs if the engine is terminated.

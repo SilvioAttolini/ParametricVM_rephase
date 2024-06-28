@@ -21,7 +21,7 @@ def spat_cohers_2(complete_vms_time, params, n_Vms):
         x = complete_vms_time[micA, :]
         y = complete_vms_time[micB, :]
 
-        # Calculate the PSD using the Welch method
+        # Calculate the PSD using the Welch my_implementation
         # f, pxx = welch(x, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
         # _, pyy = welch(y, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 
@@ -34,7 +34,7 @@ def spat_cohers_2(complete_vms_time, params, n_Vms):
         # plt.grid(True)
         # plt.show()
 
-        # Calculate the cross-PSD using the Welch method
+        # Calculate the cross-PSD using the Welch my_implementation
         f, Pxy = csd(x, y, fs, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 
         # Plot the cross-PSD

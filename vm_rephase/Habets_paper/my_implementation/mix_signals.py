@@ -1,5 +1,5 @@
 
-def habets():
+def mix_signals():
     """ """
 
     return
