@@ -84,7 +84,7 @@ def plot_spatial_coherence(freqs_gamma, real_Gamma_nab, sinc, micA, micB, save_d
     plt.ylabel('Spatial Coherence')
     plt.title(f'Spatial Coherence of diffuse between mic {micA + 1} and mic {micB + 1}')
     plt.grid(True)
-    plt.savefig(f'{save_directory}/{name_and_title}.png', dpi=300)
+    #plt.savefig(f'{save_directory}/{name_and_title}.png', dpi=300)
     if show:
         plt.show()
     plt.close()

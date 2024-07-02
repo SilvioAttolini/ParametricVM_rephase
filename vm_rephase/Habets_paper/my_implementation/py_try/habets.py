@@ -4,7 +4,7 @@ from scipy.special import jv  # besselj0
 from scipy.signal import stft
 from scipy.signal.windows import hann
 import matplotlib.pyplot as plt
-from Habets_paper.my_implementation.my_mix_signals import my_mix_signals
+from Habets_paper.my_implementation.py_try.my_mix_signals import my_mix_signals
 
 
 def habets() -> None:

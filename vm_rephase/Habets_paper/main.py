@@ -1,7 +1,6 @@
 import matlab.engine
 eng = matlab.engine.start_matlab()
-from Habets_paper.my_implementation.habets import habets
-
+from fast_SC_test import fast_SC_test
 
 def main() -> None:
     """
@@ -131,11 +130,11 @@ def main() -> None:
     """
 
     # My implementation
-    #habets()
-    # todo: check the results of the EVD!!!
+    eng.eval("run('my_implementation/habets.m')", nargout=0)
+    fast_SC_test()
 
     # Original paper
-    eng.eval("run('ANF-Generator/gen_noisefield.m')", nargout=0)
+    # eng.eval("run('ANF-Generator/gen_noisefield.m')", nargout=0)
     # eng.eval("run('ANF-Generator/gen_babble_speech.m')", nargout=0)
 
 
