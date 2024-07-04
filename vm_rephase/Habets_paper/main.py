@@ -131,7 +131,7 @@ def main() -> None:
 
     # My implementation
     eng.eval("run('my_implementation/habets.m')", nargout=0)
-    fast_SC_test()
+    #fast_SC_test()
 
     # Original paper
     # eng.eval("run('ANF-Generator/gen_noisefield.m')", nargout=0)

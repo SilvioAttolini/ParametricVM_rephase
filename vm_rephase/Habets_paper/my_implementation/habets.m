@@ -45,8 +45,16 @@ display(L);
 %data = totalDiffuse;
 data1 = array.meanDiffuse{1};
 data1 = data1(:, 1);
+data1 = data1 + max(data1)*randn(L,1)/100;
+
 data5 = array.meanDiffuse{5};
 data5 = data5(:, 1);
+plot(data5);
+%pause(10);
+%disp("ok");
+data5 = data5 + max(data5)*randn(L,1)/100;
+plot(data5);
+pause(9);
 
 data1 = data1(:); % Ensure data1 is a column vector
 data5 = data5(:); % Ensure data2 is a column vector
@@ -54,10 +62,10 @@ data = [data1; data5];
 display(size(data));
 
 % Combine data1 and data5 into a stereo signal
-stereoData = [data1, data5];
-fileName = 'stereo.wav';
-audiowrite(fileName, stereoData, Fs);
-disp(['WAV file created: ', fileName]);
+%stereoData = [data1, data5];
+%fileName = 'stereo.wav';
+%audiowrite(fileName, stereoData, Fs);
+%disp(['WAV file created: ', fileName]);
 
 data = data - mean(data);
 
@@ -135,10 +143,10 @@ for m = 1:MM
     title(sprintf('Inter sensor distance %1.2f m',m*d));
     legend('Theory',sprintf('Proposed Method (NMSE = %2.1f dB)',NMSE(m)));
     grid on;
-    saveas(gcf, 'habets_SC_eigen.png');
+    saveas(gcf, 'habets_SC_eigen+noise_100.png');
 end
 
 % Save babble speech
-audiowrite('habets_result.wav',x,Fs);
+audiowrite('habets_result_100.wav',x,Fs);
 %
 %pause(99);
